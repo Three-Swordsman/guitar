@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhaoshy.shoppinghelper.mapper.UserMapperExtend">
+  <resultMap id="BaseResultMap" type="user" extends="com.zhaoshy.shoppinghelper.mapper.UserMapper.BaseResultMap"></resultMap>
+
+  <select id="login" resultType="user" >
+    select
+        id,
+        username,
+        user_type userType,
+        member_type memberType
+    from sys_user
+    where username = #{username}
+    and password = #{password}
+  </select>
+  <select id="selectUser" resultType="java.lang.String">
+        select
+            username
+        from sys_user
+        where username = #{username}
+    </select>
+  <select id="getAllUser" resultMap="BaseResultMap">
+        select
+            *
+        from sys_user
+    </select>
+
+</mapper>
