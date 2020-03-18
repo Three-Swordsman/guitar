@@ -1,6 +1,6 @@
-package com.zhaoshy.shoppinghelper.mapper;
+package com.zhaoshy.guitarhelper.mapper;
 
-import com.zhaoshy.shoppinghelper.entity.User;
+import com.zhaoshy.guitarhelper.entity.User;
 
 import java.util.List;
 

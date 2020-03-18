@@ -1,6 +1,6 @@
-package com.zhaoshy.shoppinghelper.service;
+package com.zhaoshy.guitarhelper.service;
 
-import com.zhaoshy.shoppinghelper.entity.User;
+import com.zhaoshy.guitarhelper.entity.User;
 
 import java.util.List;
 

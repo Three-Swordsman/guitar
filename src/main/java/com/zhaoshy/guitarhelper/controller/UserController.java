@@ -1,8 +1,8 @@
-package com.zhaoshy.shoppinghelper.controller;
+package com.zhaoshy.guitarhelper.controller;
 
-import com.zhaoshy.shoppinghelper.entity.User;
-import com.zhaoshy.shoppinghelper.http.ResponseEntityBase;
-import com.zhaoshy.shoppinghelper.service.UserService;
+import com.zhaoshy.guitarhelper.entity.User;
+import com.zhaoshy.guitarhelper.http.ResponseEntityBase;
+import com.zhaoshy.guitarhelper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.zhaoshy.shoppinghelper.entity;
+package com.zhaoshy.guitarhelper.entity;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
@@ -14,7 +14,7 @@ public class User {
 
     private String password;
 
-    private String userType;
+    private Integer userType;
 
     private String name;
 
@@ -26,9 +26,7 @@ public class User {
 
     private String idCardImg;
 
-    private String driverLicenseImg;
-
-    private String meberId;
+    private Integer memberType;
 
     private String createBy;
 
@@ -40,6 +38,6 @@ public class User {
 
     private String remarks;
 
-    private String delFlag;
+    private Integer delFlag;
 
 }

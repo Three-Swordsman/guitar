@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.zhaoshy.shoppinghelper.mapper.GuitarMapper" >
-  <resultMap id="BaseResultMap" type="com.zhaoshy.shoppinghelper.entity.Guitar" >
+<mapper namespace="com.zhaoshy.guitarhelper.mapper.GuitarMapper" >
+  <resultMap id="GuitarResultMap" type="com.zhaoshy.guitarhelper.entity.Guitar" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="brand" property="brand" jdbcType="VARCHAR" />
     <result column="model_num" property="modelNum" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
     <result column="color" property="color" jdbcType="VARCHAR" />
     <result column="fingerboard_material" property="fingerboardMaterial" jdbcType="VARCHAR" />
     <result column="app_object" property="appObject" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -18,10 +20,10 @@
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, brand, model_num, color, fingerboard_material, app_object, size, type, create_by, 
-    create_date, update_by, update_date, remarks, del_flag
+    id, brand, model_num, img, color, fingerboard_material, app_object, size, price, type,
+    create_by, create_date, update_by, update_date, remarks, del_flag
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="GuitarResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from sys_guitar
@@ -31,19 +33,21 @@
     delete from sys_guitar
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhaoshy.shoppinghelper.entity.Guitar" >
-    insert into sys_guitar (id, brand, model_num, 
+  <insert id="insert" parameterType="com.zhaoshy.guitarhelper.entity.Guitar" >
+    insert into sys_guitar (id, brand, model_num, img,
       color, fingerboard_material, app_object, 
-      size, type, create_by, 
-      create_date, update_by, update_date, 
-      remarks, del_flag)
-    values (#{id,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, #{modelNum,jdbcType=VARCHAR}, 
+      size, price, type, 
+      create_by, create_date, update_by, 
+      update_date, remarks, del_flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, #{modelNum,jdbcType=VARCHAR}, #{img, jdbcType=VARCHAR},
       #{color,jdbcType=VARCHAR}, #{fingerboardMaterial,jdbcType=VARCHAR}, #{appObject,jdbcType=VARCHAR}, 
-      #{size,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, 
-      #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, 
-      #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER})
+      #{size,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.zhaoshy.shoppinghelper.entity.Guitar" >
+  <insert id="insertSelective" parameterType="com.zhaoshy.guitarhelper.entity.Guitar" >
     insert into sys_guitar
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -54,6 +58,9 @@
       </if>
       <if test="modelNum != null" >
         model_num,
+      </if>
+      <if test="img != null" >
+        img,
       </if>
       <if test="color != null" >
         color,
@@ -66,6 +73,9 @@
       </if>
       <if test="size != null" >
         size,
+      </if>
+      <if test="price != null" >
+        price,
       </if>
       <if test="type != null" >
         type,
@@ -99,6 +109,9 @@
       <if test="modelNum != null" >
         #{modelNum,jdbcType=VARCHAR},
       </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
       <if test="color != null" >
         #{color,jdbcType=VARCHAR},
       </if>
@@ -110,6 +123,9 @@
       </if>
       <if test="size != null" >
         #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
       </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
@@ -134,7 +150,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhaoshy.shoppinghelper.entity.Guitar" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhaoshy.guitarhelper.entity.Guitar" >
     update sys_guitar
     <set >
       <if test="brand != null" >
@@ -142,6 +158,9 @@
       </if>
       <if test="modelNum != null" >
         model_num = #{modelNum,jdbcType=VARCHAR},
+      </if>
+      <if test="img != null" >
+        model_num = #{img,jdbcType=VARCHAR},
       </if>
       <if test="color != null" >
         color = #{color,jdbcType=VARCHAR},
@@ -154,6 +173,9 @@
       </if>
       <if test="size != null" >
         size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
       </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
@@ -179,14 +201,16 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhaoshy.shoppinghelper.entity.Guitar" >
+  <update id="updateByPrimaryKey" parameterType="com.zhaoshy.guitarhelper.entity.Guitar" >
     update sys_guitar
     set brand = #{brand,jdbcType=VARCHAR},
       model_num = #{modelNum,jdbcType=VARCHAR},
+      img = #{img,jdbcType=VARCHAR},
       color = #{color,jdbcType=VARCHAR},
       fingerboard_material = #{fingerboardMaterial,jdbcType=VARCHAR},
       app_object = #{appObject,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
       type = #{type,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},

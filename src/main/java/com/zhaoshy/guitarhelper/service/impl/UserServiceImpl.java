@@ -1,9 +1,9 @@
-package com.zhaoshy.shoppinghelper.service.impl;
+package com.zhaoshy.guitarhelper.service.impl;
 
-import com.zhaoshy.shoppinghelper.entity.User;
-import com.zhaoshy.shoppinghelper.mapper.UserMapper;
-import com.zhaoshy.shoppinghelper.mapper.UserMapperExtend;
-import com.zhaoshy.shoppinghelper.service.UserService;
+import com.zhaoshy.guitarhelper.entity.User;
+import com.zhaoshy.guitarhelper.mapper.UserMapper;
+import com.zhaoshy.guitarhelper.mapper.UserMapperExtend;
+import com.zhaoshy.guitarhelper.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

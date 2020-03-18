@@ -1,4 +1,4 @@
-package com.zhaoshy.shoppinghelper.http;
+package com.zhaoshy.guitarhelper.http;
 
 /**
  * @Author: zhaoshy

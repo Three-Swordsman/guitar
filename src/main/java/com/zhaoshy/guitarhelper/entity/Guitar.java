@@ -1,4 +1,4 @@
-package com.zhaoshy.shoppinghelper.entity;
+package com.zhaoshy.guitarhelper.entity;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
@@ -14,6 +14,8 @@ public class Guitar {
 
     private String modelNum;
 
+    private String img;
+
     private String color;
 
     private String fingerboardMaterial;
@@ -21,6 +23,8 @@ public class Guitar {
     private String appObject;
 
     private String size;
+
+    private Double price;
 
     private Integer type;
 
