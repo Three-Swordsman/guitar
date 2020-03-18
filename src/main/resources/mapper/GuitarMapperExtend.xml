@@ -3,4 +3,8 @@
 <mapper namespace="com.zhaoshy.guitarhelper.mapper.GuitarMapperExtend" >
   <resultMap id="BaseResultMap" type="guitar" extends="com.zhaoshy.guitarhelper.mapper.GuitarMapper.GuitarResultMap" ></resultMap>
 
+  <update id="updateStatusToDel" >
+    update sys_guitar set del_flag = 1
+  </update>
+
 </mapper>

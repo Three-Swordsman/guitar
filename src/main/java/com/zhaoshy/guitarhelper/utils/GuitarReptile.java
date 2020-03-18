@@ -5,6 +5,7 @@ import cn.wanghaomiao.seimi.def.BaseSeimiCrawler;
 import cn.wanghaomiao.seimi.struct.Response;
 import com.zhaoshy.guitarhelper.entity.Guitar;
 import com.zhaoshy.guitarhelper.mapper.GuitarMapper;
+import com.zhaoshy.guitarhelper.mapper.GuitarMapperExtend;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.seimicrawler.xpath.JXDocument;
@@ -17,16 +18,19 @@ import java.util.regex.Pattern;
 
 /****************************************
  * @author : zhaoshy
- * @description : 
+ * @description : 设置一个执行周期为 10 分钟的爬虫
  * @create_time : 2020/3/18 17:31
  ****************************************
  */
 
-@Crawler(name = "guitar")
+@Crawler(name = "guitar", delay = 600)
 public class GuitarReptile extends BaseSeimiCrawler {
 
     @Autowired
     GuitarMapper guitarMapper;
+
+    @Autowired
+    GuitarMapperExtend guitarMapperExtend;
 
     @Override
     public String[] startUrls() {
@@ -36,6 +40,9 @@ public class GuitarReptile extends BaseSeimiCrawler {
 
     @Override
     public void start(Response response) {
+        //爬取数据之前先将以往数据状态设置为 1
+        guitarMapperExtend.updateStatusToDel();
+        //开始爬取数据
         JXDocument document = response.document();
         String index = "https://www.yamaha.com.cn";
         String xpath = "//a[@class='display-block']";
@@ -49,8 +56,7 @@ public class GuitarReptile extends BaseSeimiCrawler {
             Elements model_e = element.getElementsByTag("span");
             String model = model_e.text();
             //获取价格
-            Elements price_e = element.getElementsByTag("p");
-            String price_s = price_e.text();
+            String price_s = element.getElementsByTag("p").text();
             String result = Pattern.compile("[^0-9]").matcher(price_s).replaceAll("").trim();
             double price = Double.parseDouble(result);
 
@@ -63,6 +69,7 @@ public class GuitarReptile extends BaseSeimiCrawler {
             guitar.setCreateBy("zhaoshy");
             guitar.setCreateDate(new Date());
 
+            //插入数据
             guitarMapper.insertSelective(guitar);
         }
     }
