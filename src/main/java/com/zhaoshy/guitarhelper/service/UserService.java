@@ -1,6 +1,7 @@
 package com.zhaoshy.guitarhelper.service;
 
 import com.zhaoshy.guitarhelper.entity.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

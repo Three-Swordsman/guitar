@@ -1,7 +1,7 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : myself
+ Source Server         : cars
  Source Server Type    : MySQL
  Source Server Version : 50624
  Source Host           : localhost:3306
@@ -11,7 +11,7 @@
  Target Server Version : 50624
  File Encoding         : 65001
 
- Date: 18/03/2020 18:43:32
+ Date: 22/03/2020 20:28:51
 */
 
 SET NAMES utf8mb4;
@@ -31,6 +31,7 @@ CREATE TABLE `sys_guitar`  (
   `app_object` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '适用对象',
   `size` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '尺寸',
   `price` decimal(10, 2) NULL DEFAULT NULL COMMENT '价格',
+  `number` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数量',
   `type` int(1) NULL DEFAULT 0 COMMENT '是否是爬虫数据',
   `create_by` varchar(64) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '创建者',
   `create_date` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
@@ -39,7 +40,7 @@ CREATE TABLE `sys_guitar`  (
   `remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '备注信息',
   `del_flag` int(1) NOT NULL DEFAULT 0 COMMENT '删除标记',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '车辆管理' ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '车辆管理' ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for sys_user

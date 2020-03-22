@@ -11,6 +11,7 @@
     <result column="app_object" property="appObject" jdbcType="VARCHAR" />
     <result column="size" property="size" jdbcType="VARCHAR" />
     <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="INTEGER" />
     <result column="create_by" property="createBy" jdbcType="VARCHAR" />
     <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
@@ -20,7 +21,7 @@
     <result column="del_flag" property="delFlag" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, brand, model_num, img, color, fingerboard_material, app_object, size, price, type,
+    id, brand, model_num, img, color, fingerboard_material, app_object, size, price,number, type,
     create_by, create_date, update_by, update_date, remarks, del_flag
   </sql>
   <select id="selectByPrimaryKey" resultMap="GuitarResultMap" parameterType="java.lang.Integer" >
@@ -29,6 +30,11 @@
     from sys_guitar
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByAll" resultMap="GuitarResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_guitar
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_guitar
     where id = #{id,jdbcType=INTEGER}
@@ -36,13 +42,13 @@
   <insert id="insert" parameterType="com.zhaoshy.guitarhelper.entity.Guitar" >
     insert into sys_guitar (id, brand, model_num, img,
       color, fingerboard_material, app_object, 
-      size, price, type, 
+      size, price,number, type,
       create_by, create_date, update_by, 
       update_date, remarks, del_flag
       )
     values (#{id,jdbcType=INTEGER}, #{brand,jdbcType=VARCHAR}, #{modelNum,jdbcType=VARCHAR}, #{img, jdbcType=VARCHAR},
       #{color,jdbcType=VARCHAR}, #{fingerboardMaterial,jdbcType=VARCHAR}, #{appObject,jdbcType=VARCHAR}, 
-      #{size,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, 
+      #{size,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL},#{number,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},
       #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
       #{updateDate,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{delFlag,jdbcType=INTEGER}
       )
@@ -76,6 +82,9 @@
       </if>
       <if test="price != null" >
         price,
+      </if>
+      <if test="number != null" >
+        number,
       </if>
       <if test="type != null" >
         type,
@@ -127,6 +136,9 @@
       <if test="price != null" >
         #{price,jdbcType=DECIMAL},
       </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
       </if>
@@ -177,6 +189,9 @@
       <if test="price != null" >
         price = #{price,jdbcType=DECIMAL},
       </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
       <if test="type != null" >
         type = #{type,jdbcType=INTEGER},
       </if>
@@ -211,6 +226,7 @@
       app_object = #{appObject,jdbcType=VARCHAR},
       size = #{size,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
+      number = #{number,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
       create_by = #{createBy,jdbcType=VARCHAR},
       create_date = #{createDate,jdbcType=TIMESTAMP},

@@ -26,6 +26,8 @@ public class Guitar {
 
     private Double price;
 
+    private String number;
+
     private Integer type;
 
     private String createBy;
