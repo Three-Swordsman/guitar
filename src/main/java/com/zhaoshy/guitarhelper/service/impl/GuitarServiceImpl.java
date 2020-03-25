@@ -62,7 +62,18 @@ public class GuitarServiceImpl implements GuitarService {
         List<Guitar> list = guitarMapper.selectByAll();
         return list;
     }
-	
+
+    /**
+     * @Author: wuxiaojin
+     * @Description: 按照型号查询列表
+     * @return
+     */
+    @Override
+    public List<Guitar> guitarListByModel(String modelNum){
+        List<Guitar> list = guitarMapper.selectListBymodel(modelNum);
+        return list;
+    }
+
 	/**
      * @Author: wuxiaojin
      * @Description: 商品详情

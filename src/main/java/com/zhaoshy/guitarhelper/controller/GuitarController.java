@@ -101,6 +101,24 @@ public class GuitarController {
     }
 
     /**
+     * 按型号查询商品列表
+     * @return
+     */
+    @RequestMapping(value = "/listByModel")
+    public ResponseEntityBase guitarListByModelNum(String modelNum) {
+        List<Guitar> list = guitarService.guitarListByModel(modelNum);
+        ResponseEntityBase responseEntityBase = new ResponseEntityBase();
+        if (list.size() > 0) {
+            responseEntityBase.setCode(1);
+            responseEntityBase.setMessage("查询成功");
+            responseEntityBase.setData(list);
+        }else{
+            return responseEntityBase.failed("未查到数据");
+        }
+        return responseEntityBase;
+    }
+
+    /**
      * 商品详情
      * @param id
      * @return
