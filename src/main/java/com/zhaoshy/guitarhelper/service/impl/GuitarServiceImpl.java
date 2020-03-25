@@ -14,9 +14,6 @@ public class GuitarServiceImpl implements GuitarService {
     @Autowired
     GuitarMapper guitarMapper;
 
-    @Autowired
-    GuitarMapperExtend guitarMapperExtend;
-
     /**
      * @Author : zhaoshy
      * @Date : 2020-01-28 22:01
