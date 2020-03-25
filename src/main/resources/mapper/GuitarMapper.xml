@@ -35,11 +35,17 @@
     <include refid="Base_Column_List" />
     from sys_guitar
   </select>
-  <select id="selectListBymodel" resultMap="GuitarResultMap" parameterType="java.lang.String">
+  <select id="selectListBymodel" resultMap="GuitarResultMap" parameterType="com.zhaoshy.guitarhelper.entity.Guitar">
     select
     <include refid="Base_Column_List" />
     from sys_guitar
-    where  model_num = #{modelNum,jdbcType=VARCHAR}
+    where  1=1
+    <if test="modelNum != null" >
+      and model_num = #{modelNum,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+      and type = #{type,jdbcType=INTEGER}
+    </if>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from sys_guitar

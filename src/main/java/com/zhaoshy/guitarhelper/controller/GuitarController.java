@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.SimpleFormatter;
+import java.text.*;
 
 /****************************************
  * @author : zhaoshy
@@ -29,7 +30,9 @@ public class GuitarController {
      */
     @RequestMapping(value = "/registered", method = RequestMethod.POST)
         public ResponseEntityBase addGuitar(@RequestBody Guitar guitar) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date date = new Date();
+            guitar.setCreateDate(date);
             int i = guitarService.addGuitar(guitar);
             ResponseEntityBase responseEntityBase = new ResponseEntityBase();
             if (i > 0) {
@@ -105,8 +108,8 @@ public class GuitarController {
      * @return
      */
     @RequestMapping(value = "/listByModel")
-    public ResponseEntityBase guitarListByModelNum(String modelNum) {
-        List<Guitar> list = guitarService.guitarListByModel(modelNum);
+    public ResponseEntityBase guitarListByModelNum(@RequestBody Guitar guitar) {
+        List<Guitar> list = guitarService.guitarListByModel(guitar);
         ResponseEntityBase responseEntityBase = new ResponseEntityBase();
         if (list.size() > 0) {
             responseEntityBase.setCode(1);

@@ -9,6 +9,6 @@ public interface GuitarService {
     int updateGuitar(Guitar record);
     int deleteGuitar(int id);
     List<Guitar> guitarList();
-    List<Guitar> guitarListByModel(String modelNum);
+    List<Guitar> guitarListByModel(Guitar record);
     Guitar guitarDetail(int id);
 }

@@ -22,6 +22,7 @@ public class MessageController {
     @RequestMapping(value = "/registered", method = RequestMethod.POST)
     public ResponseEntityBase addMessage(@RequestBody Message message) {
         Date date = new Date();
+        message.setCreateDate(date);
         int i = messageService.addMessage(message);
         ResponseEntityBase responseEntityBase = new ResponseEntityBase();
         if (i > 0) {

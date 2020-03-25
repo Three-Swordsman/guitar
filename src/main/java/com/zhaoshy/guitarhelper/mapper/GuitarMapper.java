@@ -9,7 +9,7 @@ public interface GuitarMapper {
     int insertSelective(Guitar record);
     Guitar selectByPrimaryKey(Integer id);
     List<Guitar> selectByAll();
-    List<Guitar> selectListBymodel(String modelNum);
+    List<Guitar> selectListBymodel(Guitar record);
     int updateByPrimaryKeySelective(Guitar record);
     int updateByPrimaryKey(Guitar record);
 }

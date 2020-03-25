@@ -66,8 +66,8 @@ public class GuitarServiceImpl implements GuitarService {
      * @return
      */
     @Override
-    public List<Guitar> guitarListByModel(String modelNum){
-        List<Guitar> list = guitarMapper.selectListBymodel(modelNum);
+    public List<Guitar> guitarListByModel(Guitar guitar){
+        List<Guitar> list = guitarMapper.selectListBymodel(guitar);
         return list;
     }
 
